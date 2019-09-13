@@ -88,7 +88,7 @@ public:
 		// Hook a lambda with captured this-ptr as handler
 		::subscribe<&PlayerInput::InputKey>([this](Functions::ModReturns* modReturns, PlayerInput* playerInput, FKey key, InputEvent event, float amount, bool gamePad) {
 			if (GetAsyncKeyState('K')) {
-				SDK::AFGWeapon::GetMagSize(40);
+				SDK::AFGMagSize aMagSize = *Functions::getMagSize(40);
 
 				std::string message = "test " + std::to_string(size);
 				LOG(message);
