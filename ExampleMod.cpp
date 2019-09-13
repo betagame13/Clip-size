@@ -88,7 +88,7 @@ public:
 		// Hook a lambda with captured this-ptr as handler
 		::subscribe<&PlayerInput::InputKey>([this](Functions::ModReturns* modReturns, PlayerInput* playerInput, FKey key, InputEvent event, float amount, bool gamePad) {
 			if (GetAsyncKeyState('K')) {
-				SDK::AFGMagSize aMagSize = *Functions::getMagSize();
+				SDK::AFGCharacterMagSize aMagSize = *Functions::getMagSize();
 				SDK::UFGMagSizeComponent* MagSize = aCharachter.GetMagSize();
 				
 				int size = MagSize->GetSizeLinear();
