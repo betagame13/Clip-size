@@ -79,7 +79,7 @@ public:
 		SDK::InitSDK(); //Initialize the SDK in ExampleMod so the functions work properly
 
 		// More on namespaces:
-		// * The functions that will be of use to you are in the SML::Mods::Functions namespace. A tip is to type Functions:: and see what functions are available for you to use. 
+		// * The functions that will be of use to you are in the SML::Mods::Functions namespace. A tip is to type Functions::and see what functions are available for you to use. 
 
 		// Hook a member function as handler
 		::subscribe<&AFGPlayerController::BeginPlay>(std::bind(&ExampleMod::beginPlay, this, _1, _2)); //bind the beginPlay function, with placeholder variables
@@ -88,15 +88,30 @@ public:
 		// Hook a lambda with captured this-ptr as handler
 		::subscribe<&PlayerInput::InputKey>([this](Functions::ModReturns* modReturns, PlayerInput* playerInput, FKey key, InputEvent event, float amount, bool gamePad) {
 			if (GetAsyncKeyState('K')) {
-				SDK::AFGMagSize aMagSize = *Functions::getMagSize(40);
+				SDK::AFGMagSize aMagSize = *Functions::getMagSize();
+				SDK::UFGMagSizeComponent* MagSize = aCharachter.GetMagSize();
+				
+				int size = MagSize->GetSizeLinear();
+				int newsize = size+10;
+				
+				std::string message = "Changing size from " + std::to_string(size) + " => " + std::to_string(newsize);
+				LOG(message);
 
+				MagSize->Resize(newsize); 
+			}
+				
 				std::string message = "test " + std::to_string(size);
 				LOG(message);
 
 			return false;
 		});
+				
 
 
+				
+				
+
+			
 
 	//The postSetup function is where you do things based on other mods' setup functions
 	void postSetup() override {
