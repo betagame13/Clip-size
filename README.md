@@ -1,1 +1,1 @@
-# Clip-size
+# Clip-size 1.0
